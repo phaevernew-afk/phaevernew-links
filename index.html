@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藥劑科表單快捷工作台</title>
+    <style>
+        :root {
+            --primary-color: #1a365d; /* 深醫學藍 */
+            --secondary-color: #2b6cb0;
+            --accent-color: #319795; /* 醫療綠 */
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* 頂部常用資料區 */
+        .database-section {
+            background: #ebf8fa;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .database-info h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .btn-database {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-database:hover {
+            background-color: #287e7c;
+            transform: translateY(-2px);
+        }
+
+        /* 表單卡片區格 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 給錯藥品反應表特別標示警告色 */
+        .card.warning {
+            border-top: 4px solid #e53e3e;
+        }
+        .card.warning .card-title {
+            color: #c53030;
+        }
+
+        .btn-link {
+            display: block;
+            text-align: center;
+            background-color: #edf2f7;
+            color: var(--secondary-color);
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .card.warning .btn-link:hover {
+            background-color: #e53e3e;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            header { padding: 20px 10px; }
+            .database-section { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>藥劑科表單快捷工作台</h1>
+            <p>提供藥師快速進行各項業務登記與表單查詢</p>
+        </header>
+
+        <div class="database-section">
+            <div class="database-info">
+                <h2>檔案與歷史資料查詢</h2>
+                <p>進入查看藥劑科各項表單留存之資料與統計結果</p>
+            </div>
+            <a href="https://drive.google.com/drive/u/0/folders/1P3aCPh0efV4biYrsEpcFTtau2Spa5SL8" target="_blank" class="btn-database">📁 進入表單留存資料庫</a>
+        </div>
+
+        <div class="grid">
+            
+            <div class="card">
+                <div>
+                    <div class="card-title">📝 用藥指導紀錄單</div>
+                    <p style="color: #718096; font-size: 0.9rem;">用於記錄病人用藥指導、衛教說明之重要歷程。</p>
+                </div>
+                <a href="https://forms.gle/swTjzvyWwZVrTfz3A" target="_blank" class="btn-link">開啟登記表單</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">💬 藥物諮詢紀錄單</div>
+                    <p style="color: #718096; font-size: 0.9rem;">收錄民眾、醫護人員之藥物相關問題諮詢紀錄。</p>
+                </div>
+                <a href="https://forms.gle/qLogwBVg27Yr4HyV6" target="_blank" class="btn-link">開啟登記表單</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">📊 藥物使用評估紀錄表</div>
+                    <p style="color: #718096; font-size: 0.9rem;">(DUE) 特定藥物使用適當性與療效評估登記。</p>
+                </div>
+                <a href="https://forms.gle/3HMZCxXZnUewXXaXA" target="_blank" class="btn-link">開啟登記表單</a>
+            </div>
+
+            <div class="card warning">
+                <div>
+                    <div class="card-title">⚠️ 給錯藥品反應表</div>
+                    <p style="color: #e53e3e; font-size: 0.9rem; font-weight: bold;">調劑異常與給錯藥事件通報（病人安全維護）。</p>
+                </div>
+                <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="btn-link" style="color: #e53e3e;">開啟登記表單</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">⚡ 藥物不良反應 (簡)</div>
+                    <p style="color: #718096; font-size: 0.9rem;">(ADR) 簡式快速通報表單，適合臨床忙碌時使用。</p>
+                </div>
+                <a href="https://forms.gle/7UVEHSDX34h4jWzGA" target="_blank" class="btn-link">開啟登記表單</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">🏥 住院訪視紀錄單</div>
+                    <p style="color: #718096; font-size: 0.9rem;">臨床藥師參與巡房與住院病人訪視之評估紀錄。</p>
+                </div>
+                <a href="https://forms.gle/E11w2Dse19hC3idP6" target="_blank" class="btn-link">開啟登記表單</a>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>© 2026 藥劑科 工作台 | 請妥善保管病人隱私資料</p>
+        </footer>
+    </div>
+
+</body>
+</html>
