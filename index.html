@@ -54,24 +54,35 @@
             opacity: 0.9;
         }
 
-        /* 頂部常用資料區 */
+        /* 頂部常用系統與資料區 */
         .database-section {
             background: #ebf8fa;
             border-left: 5px solid var(--accent-color);
-            padding: 20px;
+            padding: 25px;
             border-radius: 0 12px 12px 0;
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
+        }
+
+        .database-info {
+            flex: 1;
+            min-width: 280px;
         }
 
         .database-info h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
             margin-bottom: 5px;
+        }
+
+        .database-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn-database {
@@ -83,6 +94,9 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-database:hover {
@@ -166,8 +180,9 @@
 
         @media (max-width: 768px) {
             body { padding: 10px; }
-            header { padding: 20px 10px; }
+            header { padding: 20px 10px; h1 { font-size: 1.6rem; } }
             .database-section { flex-direction: column; text-align: center; }
+            .database-buttons { width: 100%; justify-content: center; flex-direction: column; }
         }
     </style>
 </head>
@@ -176,15 +191,18 @@
     <div class="container">
         <header>
             <h1>藥劑科表單快捷工作台</h1>
-            <p>提供藥師快速進行各項業務登記與表單查詢</p>
+            <p>提供藥師快速進行各項業務登記、表單查詢與藥品手冊檢索</p>
         </header>
 
         <div class="database-section">
             <div class="database-info">
-                <h2>檔案與歷史資料查詢</h2>
-                <p>進入查看藥劑科各項表單留存之資料與統計結果</p>
+                <h2>系統與歷史資料查詢</h2>
+                <p>快速檢索院內最新藥品資訊，或查看藥劑科各項表單留存之統計資料。</p>
             </div>
-            <a href="https://drive.google.com/drive/u/0/folders/1P3aCPh0efV4biYrsEpcFTtau2Spa5SL8" target="_blank" class="btn-database">📁 進入表單留存資料庫</a>
+            <div class="database-buttons">
+                <a href="https://phaevernew-afk.github.io/drug-handbook2026/" target="_blank" class="btn-database" style="background-color: #2b6cb0;">🔍 院內藥品查詢系統</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1P3aCPh0efV4biYrsEpcFTtau2Spa5SL8" target="_blank" class="btn-database">📁 表單留存資料庫</a>
+            </div>
         </div>
 
         <div class="grid">
@@ -218,9 +236,10 @@
                     <div class="card-title">⚠️ 給錯藥品反應表</div>
                     <p style="color: #e53e3e; font-size: 0.9rem; font-weight: bold;">調劑異常與給錯藥事件通報（病人安全維護）。</p>
                 </div>
-                <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="btn-link" style="color: #e53e3e;">開啟登記表單</a>
+                <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="btn-link" style="color: #e53e3e;">進行異常通報</a>
             </div>
 
+            
             <div class="card">
                 <div>
                     <div class="card-title">⚡ 藥物不良反應 (簡)</div>
