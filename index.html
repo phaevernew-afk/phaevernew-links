@@ -263,6 +263,15 @@
                 <a href="https://phaevernew-afk.github.io/payment-voucher-generator/" target="_blank" class="btn-link">開啟工具</a>
             </div>
 
+            <div class="card" id="destroyCard">
+                <div>
+                    <div class="card-title">🗑️ 藥品銷毀紀錄</div>
+                    <p style="color: #718096; font-size: 0.9rem;">登記銷毀藥品之品項、數量、日期，並管理每季盤點的半年內近效期藥品，到期自動提醒。</p>
+                    <p id="expiryBadge" style="font-size: 0.9rem; font-weight: bold; color: #e53e3e; margin-top: 8px;"></p>
+                </div>
+                <a href="destroy.html" target="_blank" class="btn-link">開啟工具</a>
+            </div>
+
             <div class="card">
                 <div>
                     <div class="card-title">💊 藥品相似清單</div>
@@ -285,6 +294,25 @@
             <p>© 2026 藥劑科 工作台 | 請妥善保管病人隱私資料</p>
         </footer>
     </div>
+
+    <script>
+    // 藥品銷毀紀錄卡片：讀取同一瀏覽器內的資料，顯示到期提醒
+    (function () {
+        try {
+            var d = JSON.parse(localStorage.getItem("pharm_destroy_v1"));
+            if (!d || !d.items) return;
+            var n = new Date(), cm = n.getFullYear() + "/" + ("0" + (n.getMonth() + 1)).slice(-2), ex = 0, tm = 0;
+            d.items.forEach(function (i) {
+                if (!(i.qty > 0)) return;
+                if (i.exp < cm) ex++; else if (i.exp === cm) tm++;
+            });
+            if (ex || tm) {
+                document.getElementById("expiryBadge").textContent = "⚠ 已到期 " + ex + " 筆、本月到期 " + tm + " 筆，請處理";
+                document.getElementById("destroyCard").classList.add("warning");
+            }
+        } catch (e) {}
+    })();
+    </script>
 
 </body>
 </html>
