@@ -9,6 +9,7 @@
             --primary-color: #1a365d; /* 深醫學藍 */
             --secondary-color: #2b6cb0;
             --accent-color: #319795; /* 醫療綠 */
+            --admin-color: #6b46c1; /* 行政紫 */
             --bg-color: #f7fafc;
             --card-bg: #ffffff;
             --text-color: #2d3748;
@@ -60,7 +61,7 @@
             border-left: 5px solid var(--accent-color);
             padding: 25px;
             border-radius: 0 12px 12px 0;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,6 +105,41 @@
             transform: translateY(-2px);
         }
 
+        /* 分區標題 */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        .section-header .section-desc {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .section-badge {
+            width: 6px;
+            height: 28px;
+            border-radius: 3px;
+            background: var(--secondary-color);
+            flex-shrink: 0;
+        }
+
+        .section.admin .section-badge { background: var(--admin-color); }
+        .section.admin .section-header h2 { color: var(--admin-color); }
+
         /* 表單卡片區格 */
         .grid {
             display: grid;
@@ -129,6 +165,10 @@
             border-color: var(--secondary-color);
         }
 
+        .section.admin .card:hover {
+            border-color: var(--admin-color);
+        }
+
         .card-title {
             font-size: 1.25rem;
             color: var(--primary-color);
@@ -139,7 +179,7 @@
             gap: 10px;
         }
 
-        /* 給錯藥品反應表特別標示警告色 */
+        /* 警示卡片 */
         .card.warning {
             border-top: 4px solid #e53e3e;
         }
@@ -165,8 +205,15 @@
             color: white;
         }
 
+        .section.admin .btn-link { color: var(--admin-color); }
+        .section.admin .btn-link:hover {
+            background-color: var(--admin-color);
+            color: white;
+        }
+
         .card.warning .btn-link:hover {
             background-color: #e53e3e;
+            color: white;
         }
 
         footer {
@@ -180,9 +227,11 @@
 
         @media (max-width: 768px) {
             body { padding: 10px; }
-            header { padding: 20px 10px; h1 { font-size: 1.6rem; } }
+            header { padding: 20px 10px; }
+            header h1 { font-size: 1.6rem; }
             .database-section { flex-direction: column; text-align: center; }
             .database-buttons { width: 100%; justify-content: center; flex-direction: column; }
+            .section-header { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -197,7 +246,7 @@
         <div class="database-section">
             <div class="database-info">
                 <h2>系統與歷史資料查詢</h2>
-                <p>快速檢索院內最新藥品資訊，或查看藥劑科各項表單留存之統計資料。</p>
+                <p>快速檢索院內最新藥品資訊,或查看藥劑科各項表單留存之統計資料。</p>
             </div>
             <div class="database-buttons">
                 <a href="https://phaevernew-afk.github.io/drug-handbook2026/" target="_blank" class="btn-database" style="background-color: #2b6cb0;">🔍 院內藥品查詢系統</a>
@@ -205,90 +254,118 @@
             </div>
         </div>
 
-        <div class="grid">
-
-            <div class="card">
-                <div>
-                    <div class="card-title">📝 用藥指導紀錄單</div>
-                    <p style="color: #718096; font-size: 0.9rem;">用於記錄病人用藥指導、衛教說明之重要歷程。</p>
-                </div>
-                <a href="https://forms.gle/swTjzvyWwZVrTfz3A" target="_blank" class="btn-link">開啟登記表單</a>
+        <!-- ========== 臨床作業 ========== -->
+        <section class="section clinical">
+            <div class="section-header">
+                <span class="section-badge"></span>
+                <h2>🩺 臨床作業</h2>
+                <span class="section-desc">病人照護、用藥安全與調劑核對</span>
             </div>
+            <div class="grid">
 
-            <div class="card">
-                <div>
-                    <div class="card-title">💬 藥物諮詢紀錄單</div>
-                    <p style="color: #718096; font-size: 0.9rem;">收錄民眾、醫護人員之藥物相關問題諮詢紀錄。</p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">📝 用藥指導紀錄單</div>
+                        <p style="color: #718096; font-size: 0.9rem;">用於記錄病人用藥指導、衛教說明之重要歷程。</p>
+                    </div>
+                    <a href="https://forms.gle/swTjzvyWwZVrTfz3A" target="_blank" class="btn-link">開啟登記表單</a>
                 </div>
-                <a href="https://forms.gle/qLogwBVg27Yr4HyV6" target="_blank" class="btn-link">開啟登記表單</a>
-            </div>
 
-            <div class="card">
-                <div>
-                    <div class="card-title">📊 藥物使用評估紀錄表</div>
-                    <p style="color: #718096; font-size: 0.9rem;">(DUE) 特定藥物使用適當性與療效評估登記。</p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">💬 藥物諮詢紀錄單</div>
+                        <p style="color: #718096; font-size: 0.9rem;">收錄民眾、醫護人員之藥物相關問題諮詢紀錄。</p>
+                    </div>
+                    <a href="https://forms.gle/qLogwBVg27Yr4HyV6" target="_blank" class="btn-link">開啟登記表單</a>
                 </div>
-                <a href="https://forms.gle/3HMZCxXZnUewXXaXA" target="_blank" class="btn-link">開啟登記表單</a>
-            </div>
 
-            <div class="card warning">
-                <div>
-                    <div class="card-title">⚠️ 給錯藥品反應表</div>
-                    <p style="color: #e53e3e; font-size: 0.9rem; font-weight: bold;">調劑異常與給錯藥事件通報（病人安全維護）。</p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">🏥 住院訪視紀錄單</div>
+                        <p style="color: #718096; font-size: 0.9rem;">臨床藥師參與巡房與住院病人訪視之評估紀錄。</p>
+                    </div>
+                    <a href="https://forms.gle/E11w2Dse19hC3idP6" target="_blank" class="btn-link">開啟登記表單</a>
                 </div>
-                <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="btn-link" style="color: #e53e3e;">進行異常通報</a>
-            </div>
 
-            <div class="card">
-                <div>
-                    <div class="card-title">⚡ 藥物不良反應 (簡)</div>
-                    <p style="color: #718096; font-size: 0.9rem;">(ADR) 簡式快速通報表單，適合臨床忙碌時使用。</p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">📊 藥物使用評估紀錄表</div>
+                        <p style="color: #718096; font-size: 0.9rem;">(DUE) 特定藥物使用適當性與療效評估登記。</p>
+                    </div>
+                    <a href="https://forms.gle/3HMZCxXZnUewXXaXA" target="_blank" class="btn-link">開啟登記表單</a>
                 </div>
-                <a href="https://forms.gle/7UVEHSDX34h4jWzGA" target="_blank" class="btn-link">開啟登記表單</a>
-            </div>
 
-            <div class="card">
-                <div>
-                    <div class="card-title">🏥 住院訪視紀錄單</div>
-                    <p style="color: #718096; font-size: 0.9rem;">臨床藥師參與巡房與住院病人訪視之評估紀錄。</p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">⚡ 藥物不良反應 (簡)</div>
+                        <p style="color: #718096; font-size: 0.9rem;">(ADR) 簡式快速通報表單,適合臨床忙碌時使用。</p>
+                    </div>
+                    <a href="https://forms.gle/7UVEHSDX34h4jWzGA" target="_blank" class="btn-link">開啟登記表單</a>
                 </div>
-                <a href="https://forms.gle/E11w2Dse19hC3idP6" target="_blank" class="btn-link">開啟登記表單</a>
-            </div>
 
-            <div class="card">
-                <div>
-                    <div class="card-title">🧾 支付證產生器</div>
-                    <p style="color: #718096; font-size: 0.9rem;">上傳進貨明細，自動依廠商產生每張支付證。</p>
+                <div class="card warning">
+                    <div>
+                        <div class="card-title">⚠️ 給錯藥品反應表</div>
+                        <p style="color: #e53e3e; font-size: 0.9rem; font-weight: bold;">調劑異常與給錯藥事件通報(病人安全維護)。</p>
+                    </div>
+                    <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="btn-link" style="color: #e53e3e;">進行異常通報</a>
                 </div>
-                <a href="https://phaevernew-afk.github.io/payment-voucher-generator/" target="_blank" class="btn-link">開啟工具</a>
-            </div>
 
-            <div class="card" id="destroyCard">
-                <div>
-                    <div class="card-title">🗑️ 藥品效期管理及銷毀紀錄</div>
-                    <p style="color: #718096; font-size: 0.9rem;">登記銷毀藥品之品項、數量、日期，並管理每季盤點的半年內近效期藥品，到期自動提醒。</p>
-                    <p id="expiryBadge" style="font-size: 0.9rem; font-weight: bold; color: #e53e3e; margin-top: 8px;"></p>
+                <div class="card">
+                    <div>
+                        <div class="card-title">💊 藥品相似清單</div>
+                        <p style="color: #718096; font-size: 0.9rem;">名稱相似、外觀相似、同成份不同劑型/劑量藥品彙整,調劑核對必備。</p>
+                    </div>
+                    <a href="https://phaevernew-afk.github.io/Look-Alike-Sound-Alike-LASA-Medications/藥品相似清單115年.html" target="_blank" class="btn-link">查看相似清單</a>
                 </div>
-                <a href="https://phaevernew-afk.github.io/Medication-Expiry-Date-Management/" target="_blank" class="btn-link">開啟工具</a>
-            </div>
 
-            <div class="card">
-                <div>
-                    <div class="card-title">💊 藥品相似清單</div>
-                    <p style="color: #718096; font-size: 0.9rem;">名稱相似、外觀相似、同成份不同劑型/劑量藥品彙整，調劑核對必備。</p>
+                <div class="card warning">
+                    <div>
+                        <div class="card-title">🚨 高警訊藥品清單</div>
+                        <p style="color: #718096; font-size: 0.9rem;">高警訊藥品分類清單與針劑給藥指引,含配製濃度、給藥速度、注意事項速查。</p>
+                    </div>
+                    <a href="https://phaevernew-afk.github.io/High-Alert-Medications/" target="_blank" class="btn-link" style="color: #e53e3e;">查看清單與指引</a>
                 </div>
-                <a href="https://phaevernew-afk.github.io/Look-Alike-Sound-Alike-LASA-Medications/藥品相似清單115年.html" target="_blank" class="btn-link">查看相似清單</a>
-            </div>
 
-            <div class="card warning">
-                <div>
-                    <div class="card-title">🚨 高警訊藥品清單</div>
-                    <p style="color: #718096; font-size: 0.9rem;">高警訊藥品分類清單與針劑給藥指引，含配製濃度、給藥速度、注意事項速查。</p>
+            </div>
+        </section>
+
+        <!-- ========== 行政作業 ========== -->
+        <section class="section admin">
+            <div class="section-header">
+                <span class="section-badge"></span>
+                <h2>🗂️ 行政作業</h2>
+                <span class="section-desc">進貨、效期、管制藥品等庫房與行政管理</span>
+            </div>
+            <div class="grid">
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">🧾 支付證產生器</div>
+                        <p style="color: #718096; font-size: 0.9rem;">上傳進貨明細,自動依廠商產生每張支付證。</p>
+                    </div>
+                    <a href="https://phaevernew-afk.github.io/payment-voucher-generator/" target="_blank" class="btn-link">開啟工具</a>
                 </div>
-                <a href="https://phaevernew-afk.github.io/High-Alert-Medications/" target="_blank" class="btn-link" style="color: #e53e3e;">查看清單與指引</a>
-            </div>
 
-        </div>
+                <div class="card" id="destroyCard">
+                    <div>
+                        <div class="card-title">🗑️ 藥品效期管理及銷毀紀錄</div>
+                        <p style="color: #718096; font-size: 0.9rem;">登記銷毀藥品之品項、數量、日期,並管理每季盤點的半年內近效期藥品,到期自動提醒。</p>
+                        <p id="expiryBadge" style="font-size: 0.9rem; font-weight: bold; color: #e53e3e; margin-top: 8px;"></p>
+                    </div>
+                    <a href="https://phaevernew-afk.github.io/Medication-Expiry-Date-Management/" target="_blank" class="btn-link">開啟工具</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">🔐 管制藥品登記工具</div>
+                        <p style="color: #718096; font-size: 0.9rem;">以 Excel 匯入資料,快速填寫管制藥品相關登記表單。</p>
+                    </div>
+                    <a href="https://phaevernew-afk.github.io/Controlled-drug/" target="_blank" class="btn-link">開啟工具</a>
+                </div>
+
+            </div>
+        </section>
 
         <footer>
             <p>© 2026 藥劑科 工作台 | 請妥善保管病人隱私資料</p>
@@ -296,7 +373,7 @@
     </div>
 
     <script>
-    // 藥品銷毀紀錄卡片：讀取同一瀏覽器內的資料，顯示到期提醒
+    // 藥品銷毀紀錄卡片:讀取同一瀏覽器內的資料,顯示到期提醒
     (function () {
         try {
             var d = JSON.parse(localStorage.getItem("pharm_destroy_v1"));
@@ -307,7 +384,7 @@
                 if (i.exp < cm) ex++; else if (i.exp === cm) tm++;
             });
             if (ex || tm) {
-                document.getElementById("expiryBadge").textContent = "⚠ 已到期 " + ex + " 筆、本月到期 " + tm + " 筆，請處理";
+                document.getElementById("expiryBadge").textContent = "⚠ 已到期 " + ex + " 筆、本月到期 " + tm + " 筆,請處理";
                 document.getElementById("destroyCard").classList.add("warning");
             }
         } catch (e) {}
